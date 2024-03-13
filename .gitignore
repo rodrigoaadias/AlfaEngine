@@ -1,3 +1,20 @@
+# Directories
+.vs/
+bin/
+bin-int/
+bin-intermediates/
+
+# Files
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.log
+Makefile
+
+# Exclude
+.idea
+*.sln
+
 # Prerequisites
 *.d
 

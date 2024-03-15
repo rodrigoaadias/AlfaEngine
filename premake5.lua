@@ -1,6 +1,6 @@
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-workspace "BitGameEngine"
+workspace "AlfaEngine"
     configurations { 
         "Debug", 
         "Release", 
@@ -9,10 +9,10 @@ workspace "BitGameEngine"
 
     startproject "Sandbox"
 
-    include "BitCore/vendor/GLFW/premake5"
+include "vendor/GLFW/premake5"
 
-project "BitCore"
-    location "BitCore"
+project "Alfa"
+    location "Engine"
     kind "StaticLib"
     language "C++"
     architecture "x64"
@@ -22,18 +22,19 @@ project "BitCore"
 
     files 
     { 
-        "%{prj.name}/Core/**.h", 
-        "%{prj.name}/Core/**.cpp"
+        "%{prj.location}/**.h", 
+        "%{prj.location}/**.cpp"
     }
 
     includedirs
     {
-        '%{prj.name}/Include'
+        '%{prj.location}/*/Include',
+        'vendor/spdlog/include'
     }
 
     filter "system:windows"
-        --systemversion "10.0.17763.0" -- General -> Windows SDK Version
-		--toolset "v141" -- General -> Platform Toolset
+		systemversion "latest"
+		toolset "v143"
 
     filter "configurations:Debug"
         defines 
@@ -73,12 +74,14 @@ project "Sandbox"
 
     includedirs
     {
-        "%{prj.name}/Include"
+        "%{prj.name}/Include",
+        "Engine/*/Include",
+        'vendor/spdlog/include'
     }
 
     links
     {
-        "BitCore"
+        "Alfa"
     }
 
     filter "system:windows"

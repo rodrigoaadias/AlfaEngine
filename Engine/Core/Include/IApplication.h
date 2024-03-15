@@ -11,7 +11,7 @@ public:
     virtual void Unload() = 0;
     virtual void Exit() = 0;
 
-    virtual const std::string& GetAppName() = 0;
+    virtual const char* GetAppName() = 0;
 
     virtual bool WantsToQuit() = 0;
 };

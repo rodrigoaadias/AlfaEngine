@@ -1,17 +1,15 @@
 ﻿#include "Sandbox.h"
-
-#include <iostream>
-
-#include "../BitCore/Core/Include/Core.h"
+#include "Log.h"
 
 void Sandbox::Init()
 {
-    int x = 10;
-    ASSERT(x == 10)  
+    AF_LOG_INFO("Starting game app: {}", GetAppName());
 }
 
 void Sandbox::Load()
 {
+    AF_LOG_WARN("Loading data");
+    AF_LOG_ERROR("Loaded game {}", GetAppName());
 }
 
 void Sandbox::Update(float DeltaTime)
@@ -26,9 +24,9 @@ void Sandbox::Exit()
 {
 }
 
-const std::string& Sandbox::GetAppName()
+const char* Sandbox::GetAppName()
 {
-    return {"Sandbox"};
+    return "Sandbox";
 }
 
 bool Sandbox::WantsToQuit()

@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "../BitCore/Core/Include/EntryPoint.h"
-#include "../BitCore/Core/Include/IApplication.h"
+#include "EntryPoint.h"
+#include "IApplication.h"
 
 class Sandbox : public IApplication
 {
@@ -10,7 +10,7 @@ public:
     void Update(float DeltaTime) override;
     void Unload() override;
     void Exit() override;
-    const std::string& GetAppName() override;
+    const char* GetAppName() override;
     bool WantsToQuit() override;
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "IApplication.h"
+#include "Startup.h"
 
 int WindowsMain(IApplication* app)
 {
@@ -7,6 +8,9 @@ int WindowsMain(IApplication* app)
     {
         return  0;
     }
+
+    InitModules();
+
     app->Init();
     app->Load();
 

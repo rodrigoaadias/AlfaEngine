@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "EntryPoint.h"
-#include "IApplication.h"
+#include "Core/EntryPoint.h"
+#include "Core/IApplication.h"
 
 class Sandbox : public IApplication
 {
@@ -14,4 +14,4 @@ public:
     bool WantsToQuit() override;
 };
 
-BIT_APPLICATION(Sandbox)
+ALFA_APPLICATION(Sandbox)

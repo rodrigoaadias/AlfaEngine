@@ -1,5 +1,5 @@
 ﻿#include "Sandbox.h"
-#include "Log.h"
+#include "Core/Log.h"
 
 void Sandbox::Init()
 {
@@ -9,7 +9,7 @@ void Sandbox::Init()
 void Sandbox::Load()
 {
     AF_LOG_WARN("Loading data");
-    AF_LOG_ERROR("Loaded game {}", GetAppName());
+    AF_LOG_ERROR("Loaded game {}", GetAppName()); 
 }
 
 void Sandbox::Update(float DeltaTime)

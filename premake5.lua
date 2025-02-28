@@ -9,6 +9,9 @@ workspace "AlfaEngine"
 
     startproject "Sandbox"
 
+IncludeDirs = {}
+IncludeDirs["GLFW"] = "vendor/GLFW/include"
+
 include "vendor/GLFW/premake5"
 
 project "Alfa"
@@ -20,6 +23,9 @@ project "Alfa"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    pchheader "afpch.h"
+    pchsource "Engine/Source/afpch.cpp"
+
     files 
     { 
         "%{prj.location}/**.h", 
@@ -28,13 +34,24 @@ project "Alfa"
 
     includedirs
     {
-        '%{prj.location}/*/Include',
-        'vendor/spdlog/include'
+        '%{prj.location}/Include',
+        'vendor/spdlog/include',
+        '%{IncludeDirs.GLFW}'
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
 		systemversion "latest"
 		toolset "v143"
+        defines
+        {
+            "AF_PLATFORM_WINDOWS"
+        }
 
     filter "configurations:Debug"
         defines 
@@ -75,7 +92,7 @@ project "Sandbox"
     includedirs
     {
         "%{prj.name}/Include",
-        "Engine/*/Include",
+        "Engine/Include",
         'vendor/spdlog/include'
     }
 
@@ -85,13 +102,18 @@ project "Sandbox"
     }
 
     filter "system:windows"
-        --systemversion "10.0.17763.0" -- General -> Windows SDK Version
-		--toolset "v141" -- General -> Platform Toolset
+        systemversion "latest" -- General -> Windows SDK Version
+		toolset "v143" -- General -> Platform Toolset
+
+        defines
+        {
+            "AF_PLATFORM_WINDOWS"
+        }
 
     filter "configurations:Debug"
         defines 
         {
-            "DEBUG" 
+            "DEBUG"
         }
         symbols "On"
 

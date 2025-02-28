@@ -1,4 +1,5 @@
-#include "Log.h"
+#include "afpch.h"
+#include "Core/Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace Alfa
